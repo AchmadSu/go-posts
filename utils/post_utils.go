@@ -12,6 +12,7 @@ import (
 
 func ToPublicPost(u models.Post) dto.PublicPost {
 	return dto.PublicPost{
+		ID:       u.ID,
 		Title:    u.Title,
 		Content:  u.Content,
 		Category: u.Category,
@@ -23,6 +24,7 @@ func ToPublicPosts(posts []models.Post) []dto.PublicPost {
 	result := make([]dto.PublicPost, 0, len(posts))
 	for _, post := range posts {
 		result = append(result, dto.PublicPost{
+			ID:       post.ID,
 			Title:    post.Title,
 			Content:  post.Content,
 			Category: post.Category,
