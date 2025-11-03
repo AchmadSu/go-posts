@@ -14,19 +14,18 @@ Repository ini dibuat untuk keperluan technical test di PT Sharing Vision Indone
    go mod tidy
 
 
-Jalankan migration untuk membuat tabel database
+2. Jalankan migration untuk membuat tabel database
+   ```bash
+   go run migration/main.go
 
-go run migration/main.go
+3. Build project
+   ```bash
+   go build
 
 
-Build project
-
-go build
-
-
-Jalankan aplikasi
-
-go run main.go
+4. Jalankan aplikasi
+   ```bash
+   go run main.go
 
 ✅ API Endpoint
 
