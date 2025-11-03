@@ -6,6 +6,7 @@ import (
 	"go-posts/database"
 	"go-posts/routes"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,6 +15,7 @@ func main() {
 	database.ConnectDB()
 
 	r := gin.Default()
+	r.Use(cors.Default())
 	routes.SetupRoutes(r)
 
 	fmt.Println("Server start on :8080")
