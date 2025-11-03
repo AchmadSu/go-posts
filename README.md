@@ -1,40 +1,54 @@
 # go-posts
-ini adalah repository yang dibuat khusus untuk kebutuhan test di PT Sharing Vision Indonesia
 
-# Requirement
-Go version go1.23.2 windows/amd64 +
-MySQL berisi database dengan nama svi
-(Saya menggunakan XAMPP untuk kebutuhan database nya)
+Repository ini dibuat untuk keperluan technical test di PT Sharing Vision Indonesia.
 
-# SetUp
-Silakan jalankan command:
-```cmd
-go mod tidy
-```
-Berfungsi untuk menginstall dependency dari project.
+## 📌 Requirements
+- Go version **1.23.2** atau lebih baru
+- MySQL dengan database bernama **svi**
+  - (Pada contoh ini menggunakan XAMPP sebagai server database)
 
-Lalu, jalankan command:
-```cmd
+## ⚙️ Setup Project
+
+1. Install dependencies
+   ```bash
+   go mod tidy
+
+
+Jalankan migration untuk membuat tabel database
+
 go run migration/main.go
-```
-Untuk memigrasi database
 
-Lalu running command:
-```cmd
+
+Build project
+
 go build
-```
 
-Jika proses building success, maka jalankan command:
-```cmd
-go run main
-```
 
-Selamat anda dapat menggunakan API posts melalui tautan: http://localhost:8080 !
-Untuk dokumentasi Postman silakan akses tautan berikut: 
-https://www.postman.com/warped-shuttle-585736/workspace/svi-golang/collection/16178191-59a350ac-cfe3-4da8-9513-167955f90c66?action=share&creator=16178191
+Jalankan aplikasi
 
-Jika ada kendala atau pertanyaan lebih lanjut silakan tanyakan kepada saya melalui Email: ecepentis@gmail.com atau What'sApp: 0896 5842 0438
-Terima kasih banyak!
+go run main.go
+
+✅ API Endpoint
+
+Setelah server berjalan, API dapat diakses melalui:
+
+http://localhost:8080
+
+📄 Dokumentasi API (Postman)
+
+Silakan akses dokumentasi Postman pada tautan berikut:
+
+👉 https://www.postman.com/warped-shuttle-585736/workspace/svi-golang/collection/16178191-59a350ac-cfe3-4da8-9513-167955f90c66?action=share&creator=16178191
+
+❓ Bantuan / Kontak
+
+Jika terdapat kendala atau pertanyaan lebih lanjut, silakan hubungi:
+
+📧 Email: ecepentis@gmail.com
+
+📱 WhatsApp: 0896-5842-0438
+
+Terima kasih!
 
 Regards,
 Ecep Achmad Sutisna
