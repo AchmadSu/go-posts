@@ -50,10 +50,10 @@ func (r *postRepository) FindByTitle(title string) (models.Post, *gorm.DB) {
 
 func (r *postRepository) Create(input dto.PublicPost) (models.Post, error) {
 	post := models.Post{
-		Title:       input.Title,
+		Title:       utils.CapitalizeWord(input.Title),
 		Content:     input.Content,
-		Category:    input.Category,
-		Status:      input.Status,
+		Category:    utils.CapitalizeWord(input.Category),
+		Status:      utils.CapitalizeWord(input.Status),
 		CreatedDate: time.Now(),
 		UpdatedDate: time.Now(),
 	}
@@ -75,10 +75,10 @@ func (r *postRepository) Update(id int, input *dto.PublicPost) (models.Post, err
 	}
 
 	data := map[string]any{
-		"Title":       input.Title,
+		"Title":       utils.CapitalizeWord(input.Title),
 		"Content":     input.Content,
-		"Category":    input.Category,
-		"Status":      input.Status,
+		"Category":    utils.CapitalizeWord(input.Category),
+		"Status":      utils.CapitalizeWord(input.Status),
 		"UpdatedDate": time.Now(),
 	}
 

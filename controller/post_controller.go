@@ -34,14 +34,19 @@ func (h *PostController) GetPosts(c *gin.Context) {
 		return
 	}
 
-	posts, _, err := h.service.GetPosts(offset, limit)
+	posts, total, err := h.service.GetPosts(offset, limit)
 	if err != nil {
+		if httpErr, ok := err.(*errs.HTTPError); ok {
+			c.JSON(httpErr.StatusCode, gin.H{"message": httpErr.Message})
+			return
+		}
 		c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"data": posts,
+		"data":  posts,
+		"total": total,
 	})
 }
 
@@ -56,6 +61,10 @@ func (h *PostController) GetPostByID(c *gin.Context) {
 
 	posts, err := h.service.GetPostByID(id)
 	if err != nil {
+		if httpErr, ok := err.(*errs.HTTPError); ok {
+			c.JSON(httpErr.StatusCode, gin.H{"message": httpErr.Message})
+			return
+		}
 		c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 		return
 	}

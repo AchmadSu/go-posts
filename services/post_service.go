@@ -126,9 +126,9 @@ func (s *postService) ValidatePost(post dto.PublicPost, id int) error {
 	}
 
 	validStatus := map[string]bool{
-		"publish": true,
-		"draft":   true,
-		"thrash":  true,
+		"Publish": true,
+		"Draft":   true,
+		"Trashed": true,
 	}
 
 	if id == 0 && post.Status == "" {
@@ -136,8 +136,8 @@ func (s *postService) ValidatePost(post dto.PublicPost, id int) error {
 	}
 
 	if post.Status != "" {
-		if !validStatus[post.Status] {
-			return errs.New("Status must be publish, draft, or thrash", http.StatusNotAcceptable)
+		if !validStatus[utils.CapitalizeWord(post.Status)] {
+			return errs.New("Status must be publish, draft, or trashed", http.StatusNotAcceptable)
 		}
 	}
 

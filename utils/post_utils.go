@@ -8,6 +8,9 @@ import (
 	"reflect"
 	"strings"
 	"time"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func ToPublicPost(u models.Post) dto.PublicPost {
@@ -94,4 +97,9 @@ func AssignedKeyModel(model any, data map[string]any) error {
 	}
 
 	return nil
+}
+
+func CapitalizeWord(s string) string {
+	c := cases.Title(language.English)
+	return c.String(s)
 }
