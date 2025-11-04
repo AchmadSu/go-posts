@@ -12,7 +12,7 @@ import (
 )
 
 type PostService interface {
-	GetPosts(page, pageSize int) ([]dto.PublicPost, int64, error)
+	GetPosts(offset, limit int) ([]dto.PublicPost, int64, error)
 	GetPostByID(id int) (dto.PublicPost, error)
 	CreatePost(post dto.PublicPost) (models.Post, error)
 	UpdatePost(post dto.PublicPost, id int) (models.Post, error)
@@ -27,9 +27,8 @@ func NewPostService(repo repository.PostRepository) PostService {
 	return &postService{repo}
 }
 
-func (s *postService) GetPosts(page, pageSize int) ([]dto.PublicPost, int64, error) {
-	offset := (page - 1) * pageSize
-	posts, total, err := s.repo.GetAll(offset, pageSize)
+func (s *postService) GetPosts(offset, limit int) ([]dto.PublicPost, int64, error) {
+	posts, total, err := s.repo.GetAll(offset, limit)
 	if err != nil {
 		return []dto.PublicPost{}, 0, errs.New("post not found", http.StatusNotFound)
 	}
